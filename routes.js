@@ -9,6 +9,9 @@ router.route('/')
 router.route('/reviews')
   .get(reviews.index);
 
+router.route('/reviews/:id')
+  .get(reviews.show);
+
 router.route('/*')
   .all((req, res) => res.notFound());
 

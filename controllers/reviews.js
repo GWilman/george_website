@@ -10,6 +10,17 @@ function reviewsIndex(req, res, next) {
   });
 }
 
+// GET /api/reviews
+function reviewsShow(req, res, next) {
+  db.query('SELECT * FROM reviews WHERE id = $1 LIMIT 1', [req.params.id], (err, data) => {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).json(data.rows[0]);
+  });
+}
+
 module.exports = {
-  index: reviewsIndex
+  index: reviewsIndex,
+  show: reviewsShow
 };

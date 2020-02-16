@@ -10,7 +10,8 @@ router.route('/reviews')
   .get(reviews.index);
 
 router.route('/reviews/:id')
-  .get(reviews.show);
+  .get(reviews.show)
+  .post(reviews.like);
 
 router.route('/*')
   .all((req, res) => res.notFound());

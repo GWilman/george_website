@@ -20,7 +20,17 @@ function reviewsShow(req, res, next) {
   });
 }
 
+function reviewsLike(req, res, next) {
+  db.query('UPDATE reviews SET likes = likes + 1 WHERE id = $1', [req.params.id], (err) => {
+    if (err) {
+      return next(err);
+    }
+    res.status(200).json({ 'message': 'Blog post liked successfully.' });
+  });
+}
+
 module.exports = {
   index: reviewsIndex,
-  show: reviewsShow
+  show: reviewsShow,
+  like: reviewsLike
 };

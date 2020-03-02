@@ -1,17 +1,21 @@
 const router = require('express').Router();
-const reviews = require('./controllers/reviews');
+const review = require('./controllers/review');
+const email = require('./controllers/email');
 
 router.route('/')
   .get((req, res) => {
-    res.status(200).json('Welcome to George\'s API.');
+    res.status(200).json({ 'message': 'Welcome to George\'s API.' });
   });
 
-router.route('/reviews')
-  .get(reviews.index);
+router.route('/review')
+  .get(review.index);
 
-router.route('/reviews/:id')
-  .get(reviews.show)
-  .post(reviews.like);
+router.route('/review/:id')
+  .get(review.show)
+  .post(review.like);
+
+router.route('/email')
+  .post(email.create);
 
 router.route('/*')
   .all((req, res) => res.notFound());

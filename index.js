@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
 
 const { port } = require('./env');
@@ -20,6 +21,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(customResponses);
+app.use(bodyParser.json());
 app.use(routes);
 
 app.listen(port, () => {
